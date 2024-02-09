@@ -10,7 +10,7 @@ const PODNAME = process.env.HOSTNAME;
 // App
 const app = express();
 app.get("/", (req, res) => {
-  res.send(`Hello World! I'm running on pod ${PODNAME}`);
+  res.send(`Hello World! I'm running on task ${PODNAME}`);
 });
 
 app.get("/healthcheck", (req, res) => {
