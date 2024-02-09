@@ -53,7 +53,7 @@ jobs:
           sam build --use-container
           sam deploy --stack-name ${{env.REPO}}-backend \
             --parameter-overrides \
-              IMAGE=${{env.ECR_REGISTRY}}/${{env.ECR_REPOSITORY}}:${{env.IMAGE_TAG}} \
+              APPIMAGE=${{env.ECR_REGISTRY}}/${{env.ECR_REPOSITORY}}:${{env.IMAGE_TAG}} \
               ENVIRONMENT=${{env.ENVIRONMENT}} \
               SERVICENAME=${{env.REPO}} \
             --resolve-s3 \

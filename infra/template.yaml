@@ -15,7 +15,7 @@ Parameters:
     Type: String
   APPIMAGE:
     Type: String
-    Default: Image of app to deploy
+    Description: Image of app to deploy
 
 Resources:
   # VPC
