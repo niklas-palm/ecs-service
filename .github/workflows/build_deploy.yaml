@@ -51,7 +51,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           sam build --use-container
-          sam deploy --stack-name ${{env.REPO}}-backend \
+          sam deploy --stack-name ${{env.REPO}} \
             --parameter-overrides \
               APPIMAGE=${{env.ECR_REGISTRY}}/${{env.ECR_REPOSITORY}}:${{env.IMAGE_TAG}} \
               ENVIRONMENT=${{env.ENVIRONMENT}} \
