@@ -215,7 +215,7 @@ Resources:
           # VolumesFrom: # Data volumes to mount from another container
           #   - VolumeFrom
           # WorkingDirectory: String # The working directory in which to run commands inside the container.
-      Family: MyTaskDefinitionFamily
+      Family: !Sub ${SERVICENAME}-task-def
       # InferenceAccelerators: # Add Elastic Inference accelerators
       # IpcMode: String # Not supported with Fargate
       NetworkMode: awsvpc
