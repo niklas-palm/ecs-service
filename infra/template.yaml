@@ -185,51 +185,20 @@ Resources:
       ContainerDefinitions:
         - Name: app-container
           Image: !Ref APPIMAGE
-          # Command: # Command to run from with in container. Cans also be spec in the DOCKERFILE
-          #   - String
-          # Cpu: Integer # The number of cpu units reserved for the container (out of those provisioned on the task level). Optional with FARGATE
-          # Memory: Integer # Similar to above
-          # MemoryReservation: Integer # The soft limit (in MiB) of memory to reserve for the container.
-          # DependsOn: # The dependencies defined for container startup and shutdown.
-          #   - ContainerDependency
-          # EntryPoint: # https://docs.docker.com/engine/reference/builder/#entrypoint
-          #   - String
-          # Environment: # Pass env variables to containers
-          #   - KeyValuePair
-          # Essential: Boolean # If the essential parameter of a container is marked as true, and that container fails or stops for any reason, all other containers that are part of the task are stopped. Defaults to True
           LogConfiguration:
             LogDriver: awslogs
             Options:
               awslogs-group: !Ref ServiceLogGroup
               awslogs-region: eu-west-1
               awslogs-stream-prefix: !Ref SERVICENAME
-          # MountPoints: # Where to mount a volume. Volume must be specified in the task-def
-          #   - MountPoint
           PortMappings:
             - ContainerPort: 8080
               HostPort: 8080
-          # Secrets: # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html
-          #   - Secret
-          # StartTimeout: Integer # Time duration (in seconds) to wait before giving up on resolving dependencies for a container.
-          # StopTimeout: Integer # Time duration (in seconds) to wait before the container is forcefully killed if it doesn't exit normally on its own.
-          # VolumesFrom: # Data volumes to mount from another container
-          #   - VolumeFrom
-          # WorkingDirectory: String # The working directory in which to run commands inside the container.
       Family: !Sub ${SERVICENAME}-task-def
-      # InferenceAccelerators: # Add Elastic Inference accelerators
-      # IpcMode: String # Not supported with Fargate
       NetworkMode: awsvpc
-      # PidMode: String # Not valid for Fargate
-      # PlacementConstraints: # Not valid for Fargate
-      #   - TaskDefinitionPlacementConstraint
-      # ProxyConfiguration: # configuration details for the App Mesh proxy
-      #   ProxyConfiguration
       RequiresCompatibilities: #The launch type the task requires
         - FARGATE
       ExecutionRoleArn: arn:aws:iam::192114778981:role/ecsTaskExecutionRole # For ECS to pull images, send logs to cloudwatch, etc. https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html
-      # TaskRoleArn: String # ARN of the role that grants containers in the task permission to call AWS APIs on your behalf.
-      # Volumes: # The list of volume definitions for the task.
-      #   - Volume
 
   ServiceLogGroup:
     Type: AWS::Logs::LogGroup
@@ -266,11 +235,7 @@ Resources:
             - !Ref PublicSubnet1
             - !Ref PublicSubnet2
       PlatformVersion: LATEST
-      # PropagateTags: TASK_DEFINITION # From where to propagate tags
-      # Role: String # It tries to use the service-linked tole by default, if it exists
       SchedulingStrategy: REPLICA
-      # ServiceRegistries: # Related to service discovery
-      #   - ServiceRegistry
 
 Outputs:
   DNSName:
